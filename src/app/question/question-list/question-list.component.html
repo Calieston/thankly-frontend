@@ -1,21 +1,21 @@
-<div class="container" style="margin-top: 70px;">
+<div class="container div-space">
   <table class="table table-hover" style="width: 80%">
     <thead>
-    <tr>
-      <th>#</th>
-      <th>Question</th>
-      <th>Actions</th>
-    </tr>
+      <tr>
+        <th>#</th>
+        <th>Question</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let question of questions">
-      <td>{{question.id}}</td>
-      <td> {{question.question}} </td>
-      <td>
-        <button class="btn btn-primary btn-space" (click)="selectQuestion(question)">Details</button>
-        <button class="btn btn-danger" (click)="deleteQuestion(question)">Delete</button>
-      </td>
-    </tr>
+      <tr *ngFor="let question of questions">
+        <td>{{question.id}}</td>
+        <td> {{question.question}} </td>
+        <td>
+          <button class="btn btn-primary btn-space" [routerLink]="['/question-detail', question.id]">Details</button>
+          <button class="btn btn-danger" (click)="deleteQuestion(question)">Delete</button>
+        </td>
+      </tr>
     </tbody>
   </table>
   <p>

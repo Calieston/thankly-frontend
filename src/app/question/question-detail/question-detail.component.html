@@ -1,0 +1,11 @@
+<div class="container div-space">
+  <p>QuestionId {{ questionId }}</p>
+  <p>Answers:</p>
+  <ul *ngFor="let answer of question.answers">
+    <li>ID: {{answer.id}}, Answer: {{ answer.answer }}</li>
+  </ul>
+  <input type="text" [(ngModel)]=answer.answer placeholder="Enter your Answer"> 
+  <br />
+
+  <button class="btn btn-primary" (click)="answerQuestion(question.id)">Answer Question</button>
+</div>

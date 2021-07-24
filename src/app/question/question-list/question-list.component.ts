@@ -33,15 +33,11 @@ export class QuestionListComponent implements OnInit {
   }
 
   addQuestion(): void {
-    this.router.navigate(['add-question'])
+    this.router.navigate(['question-create'])
       .then((e) => {
         if (e) console.log("Navigation is successful");
         else console.log("Navigation has failed!");
       });
-  }
-
-  selectQuestion(question: Question): void {
-    console.log(`selected question ${question.id}`);
   }
 
   deleteQuestion(question: Question): void {
