@@ -4,11 +4,11 @@ import { QuestionService } from '../question-service.service';
 import { Question } from '../question.model';
 
 @Component({
-  selector: 'app-list-questions',
-  templateUrl: './list-questions.component.html',
-  styleUrls: ['./list-questions.component.css']
+  selector: 'app-question-list',
+  templateUrl: './question-list.component.html',
+  styleUrls: ['./question-list.component.css']
 })
-export class ListQuestionsComponent implements OnInit {
+export class QuestionListComponent implements OnInit {
 
   questions: Question[];
 

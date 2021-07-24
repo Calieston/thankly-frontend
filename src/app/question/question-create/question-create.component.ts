@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { QuestionService } from '../question-service.service';
 
 @Component({
-  selector: 'app-add-question',
-  templateUrl: './add-question.component.html',
-  styleUrls: ['./add-question.component.css']
+  selector: 'app-question-create',
+  templateUrl: './question-create.component.html',
+  styleUrls: ['./question-create.component.css']
 })
-export class AddQuestionComponent implements OnInit {
+export class QuestionCreateComponent implements OnInit {
 
   // question : {id, question} = {id: null, question: ""};
 
@@ -25,7 +25,7 @@ export class AddQuestionComponent implements OnInit {
   onSubmit(): void {
     this.questionService.addQuestion(this.addForm.value)
       .subscribe(() => {
-        this.router.navigate(['list-questions']);
+        this.router.navigate(['question-list']);
       })
   }
 

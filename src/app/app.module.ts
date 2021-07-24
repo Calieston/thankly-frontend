@@ -4,21 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule} from "@angular/common/http";
-import { AddQuestionComponent } from './question/add-question/add-question.component';
+import { QuestionCreateComponent } from './question/question-create/question-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { ListQuestionsComponent } from './question/list-questions/list-questions.component';
+import { QuestionListComponent } from './question/question-list/question-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddQuestionComponent,
+    QuestionCreateComponent,
+    QuestionListComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ListQuestionsComponent
   ],
   imports: [
     BrowserModule,
