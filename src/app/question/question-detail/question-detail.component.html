@@ -1,11 +1,30 @@
 <div class="container div-space">
-  <p>QuestionId {{ questionId }}</p>
-  <p>Answers:</p>
-  <ul *ngFor="let answer of question.answers">
-    <li>ID: {{answer.id}}, Answer: {{ answer.answer }}</li>
-  </ul>
-  <input type="text" [(ngModel)]=answer.answer placeholder="Enter your Answer"> 
-  <br />
+  <h3>{{ question.question }}</h3>
 
-  <button class="btn btn-primary" (click)="answerQuestion(question.id)">Answer Question</button>
+  <div class="list-group">
+    <a
+      *ngFor="let answer of question.answers"
+      class="answer-item list-group-item list-group-item-action"
+      >{{ answer.answer }}
+      <fa-icon
+        (click)="deleteAnswer(answer.id)"
+        [ngStyle]="{ color: 'red' }"
+        [icon]="faTimes"
+      ></fa-icon>
+    </a>
+  </div>
+
+  <div style="margin-top: 10px; margin-bottom: 10px">
+    <input
+      type="text"
+      [(ngModel)]="answerText"
+      placeholder="Enter your Answer"
+    />
+  </div>
+
+  <app-button
+    btnClass="btn btn-primary"
+    btnLabel="Save"
+    (btnClick)="answerQuestion(question.id)"
+  ></app-button>
 </div>

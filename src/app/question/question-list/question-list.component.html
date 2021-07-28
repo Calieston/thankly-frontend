@@ -9,16 +9,28 @@
     </thead>
     <tbody>
       <tr *ngFor="let question of questions">
-        <td>{{question.id}}</td>
-        <td> {{question.question}} </td>
+        <td>{{ question.id }}</td>
+        <td>{{ question.question }}</td>
         <td>
-          <button class="btn btn-primary btn-space" [routerLink]="['/question-detail', question.id]">Details</button>
-          <button class="btn btn-danger" (click)="deleteQuestion(question)">Delete</button>
+          <app-button
+            btnClass="btn btn-primary btn-space"
+            btnLabel="Details"
+            [routerLink]="['/question-detail', question.id]"
+          >
+          </app-button>
+
+          <app-button
+            btnClass="btn btn-danger"
+            btnLabel="Delete"
+            (btnClick)="deleteQuestion(question)"
+          ></app-button>
         </td>
       </tr>
     </tbody>
   </table>
-  <p>
-    <button class="btn btn-primary" (click)="addQuestion()">New Question</button>
-  </p>
+  <app-button
+    btnClass="btn btn-primary"
+    btnLabel="New Question"
+    (btnClick)="addQuestion()"
+  ></app-button>
 </div>

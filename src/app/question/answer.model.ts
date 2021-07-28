@@ -1,4 +1,4 @@
-export class Answer {
-    id: number;
+export interface Answer {
+    id?: number;
     answer: string;
 }

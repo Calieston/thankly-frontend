@@ -3,34 +3,29 @@
     <div class="col-sm-8 offset-sm-2">
       <div>
         <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <pre>Form values: {{ addForm?.value | json }}</pre>
+          <pre>Form valid: {{ addForm?.valid | json }}</pre>
 
           <div class="form-group">
             <label for="question">Question:</label>
-            <input type="text" formControlName="question" placeholder="What are you thankful for?" name="question"
-              class="form-control" id="question">
+            <input
+              type="text"
+              formControlName="question"
+              placeholder="What are you thankful for?"
+              name="question"
+              class="form-control"
+              id="question"
+            />
           </div>
           <br />
-          <button class="btn btn-success">Add</button>
+          <input
+            [disabled]="!addForm.valid"
+            class="btn btn-primary"
+            value="Add"
+            type="submit"
+          />
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="container div-space" >
-  <div class="row">
-    <div class="col-sm-8 offset-sm-2">
-      <div>
-        <form>
-          <div class="form-group">
-            <label for="question">Question</label>
-            <input [(ngModel)]="question.question" type="text" name="question" class="form-control" id="question"
-              aria-describedby="questionHelp" placeholder="What are you thankful for?">
-            <small id="questionHelp" class="form-text text-muted">Enter your question</small>
-          </div>
-        </form>
-        <button class="btn btn-primary" (click)="onSubmit()">Create question</button>
-      </div>
-    </div>
-  </div>
-</div> -->

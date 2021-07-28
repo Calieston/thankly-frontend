@@ -6,16 +6,16 @@ import { QuestionDetailComponent } from './question/question-detail/question-det
 import { QuestionListComponent } from './question/question-list/question-list.component';
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "home" },
-  { path: "home", component: HomeComponent },
-  { path: "question-create", component: QuestionCreateComponent },
-  { path: "question-list", component: QuestionListComponent },
-  { path: "question-detail/:id", component: QuestionDetailComponent }
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: HomeComponent },
+  { path: 'question-create', component: QuestionCreateComponent },
+  { path: 'question-list', component: QuestionListComponent },
+  { path: 'question-detail/:id', component: QuestionDetailComponent },
 ];
 
-
 @NgModule({
+  // imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
