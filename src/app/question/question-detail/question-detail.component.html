@@ -1,21 +1,9 @@
 <div class="container div-space">
-  <h3>{{ question.question }}</h3>
+  <h3 *ngIf="question">{{ question.question }}</h3>
 
-  <div class="list-group">
-    <a
-      *ngFor="let answer of question.answers"
-      class="answer-item list-group-item list-group-item-action"
-      >{{ answer.answer }}
-      <fa-icon
-        (click)="deleteAnswer(answer.id)"
-        [ngStyle]="{ color: 'red' }"
-        [icon]="faTimes"
-      ></fa-icon>
-    </a>
-  </div>
-
-  <div style="margin-top: 10px; margin-bottom: 10px">
+  <div style="margin-bottom: 10px">
     <input
+      class="form-control"
       type="text"
       [(ngModel)]="answerText"
       placeholder="Enter your Answer"
@@ -27,4 +15,17 @@
     btnLabel="Save"
     (btnClick)="answerQuestion(question.id)"
   ></app-button>
+
+  <div *ngIf="question" class="list-group" style="margin-top: 10px;">
+    <a
+      *ngFor="let answer of question.answers"
+      class="answer-item list-group-item list-group-item-action"
+      >{{ answer.answer }}
+      <fa-icon
+        (click)="deleteAnswer(answer.id)"
+        [ngStyle]="{ color: 'red' }"
+        [icon]="faTimes"
+      ></fa-icon>
+    </a>
+  </div>
 </div>

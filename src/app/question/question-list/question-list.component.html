@@ -13,6 +13,7 @@
         <td>{{ question.question }}</td>
         <td>
           <app-button
+            id="detail-question"
             btnClass="btn btn-primary btn-space"
             btnLabel="Details"
             [routerLink]="['/question-detail', question.id]"
@@ -20,6 +21,7 @@
           </app-button>
 
           <app-button
+            id="delete-question"
             btnClass="btn btn-danger"
             btnLabel="Delete"
             (btnClick)="deleteQuestion(question)"
@@ -29,6 +31,7 @@
     </tbody>
   </table>
   <app-button
+    data-testid="new-question"
     btnClass="btn btn-primary"
     btnLabel="New Question"
     (btnClick)="addQuestion()"
