@@ -10,10 +10,15 @@ import { TimeslotReserveComponent } from './timeslots/timeslot-reserve/timeslot-
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
+
+  // questions
   { path: 'question-list', component: QuestionListComponent },
-  { path: 'timeslot-list', component: TimeslotListComponent },
-  { path: 'time-slot-reserve/:id', component: TimeslotReserveComponent},
   { path: 'question-detail/:id', component: QuestionDetailComponent },
+  { path: 'question-create', component: QuestionCreateComponent },
+
+  // timeslots
+  { path: 'timeslot-list', component: TimeslotListComponent },
+  { path: 'time-slot-reserve/:id', component: TimeslotReserveComponent },
 ];
 
 @NgModule({

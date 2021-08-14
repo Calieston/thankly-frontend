@@ -1,47 +1,65 @@
 <div class="container div-space">
-  <h2>01.08.2021</h2>
-  <table class="table table-hover" style="width: 80%">
-    <thead>
-      <tr>
-        <th>time</th>
-        <th>actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let timeSlot of timeSlots">
-        <td
-          [ngClass]="{
-            'bg-danger': timeSlot.reserved,
-            'bg-success': !timeSlot.reserved
-          }"
-        >
-          {{ timeSlot.time }}
-        </td>
-        <td *ngIf="!timeSlot.reserved">
-          <app-button
-            id="reserve-time-slot"
-            btnClass="btn btn-primary btn-space"
-            btnLabel="Reserve"
-            [routerLink]="['/time-slot-reserve', timeSlot.id]"
+  <input
+    matInput
+    #resultPickerModel="ngModel"
+    [matDatepicker]="basicDatepicker"
+    [(ngModel)]="selectedDate"
+    [min]="startDate"
+    placeholder="Choose a date"
+    (dateChange)="loadTimeSlots($event.value)"
+  />
+  <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+  <mat-datepicker #basicDatepicker [startAt]="startDate"></mat-datepicker>
+
+  <div *ngIf="timeSlots.length == 0" class="alert alert-info" role="alert">
+    No time slots available. Please choose another day!
+  </div>
+
+  <ng-container *ngIf="timeSlots.length > 0">
+    <table class="table table-hover" style="width: 80%">
+      <thead>
+        <tr>
+          <th>time</th>
+          <th>actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let timeSlot of timeSlots">
+          <td
+            [ngClass]="{
+              'bg-danger': timeSlot.reserved,
+              'bg-success': !timeSlot.reserved
+            }"
           >
-          </app-button>
-        </td>
-        <td *ngIf="timeSlot.reserved">
-          <app-button
-            id="free-time-slot"
-            btnClass="btn btn-primary btn-space"
-            btnLabel="Free"
-            (click)="freeTimeSlot(timeSlot.id)"
-          >
-          </app-button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <app-button
+            {{ timeSlot.time }}
+          </td>
+          <td *ngIf="!timeSlot.reserved">
+            <app-button
+              id="reserve-time-slot"
+              btnClass="btn btn-primary btn-space"
+              btnLabel="Reserve"
+              [routerLink]="['/time-slot-reserve', timeSlot.id]"
+            >
+            </app-button>
+          </td>
+          <td *ngIf="timeSlot.reserved">
+            <app-button
+              id="free-time-slot"
+              btnClass="btn btn-primary btn-space"
+              btnLabel="Cancel Reservation"
+              (click)="freeTimeSlot(timeSlot.id)"
+            >
+            </app-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <!-- <app-button
     data-testid="new-time-slot"
     btnClass="btn btn-primary"
     btnLabel="New TimeSlot"
     (btnClick)="addTimeSlot()"
-  ></app-button>
+  ></app-button> -->
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TimeSlot } from '../timeslot.model';
 import { TimeSlotService } from '../timeslot.service';
 
@@ -14,6 +14,7 @@ export class TimeslotReserveComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private timeSlotService: TimeSlotService
   ) {}
 
@@ -30,8 +31,7 @@ export class TimeslotReserveComponent implements OnInit {
 
   reserveTimeSlot() {
     this.timeSlotService.reserveTimeSlot(this.timeSlotId).subscribe(() => {
-      console.log('done');
+      this.router.navigate(['timeslot-list']);
     });
   }
-
 }

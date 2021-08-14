@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TimeSlot } from './timeslot.model';
@@ -11,8 +11,12 @@ export class TimeSlotService {
 
   constructor(private http: HttpClient) {}
 
-  getTimeSlots(): Observable<TimeSlot[]> {
-    return this.http.get<TimeSlot[]>(`${this.url}`);
+  getTimeSlots(selectedDay: string): Observable<TimeSlot[]> {
+    let params = new HttpParams();
+    if (selectedDay) {
+      params = params.append('date', selectedDay);
+    }
+    return this.http.get<TimeSlot[]>(`${this.url}`, { params: params });
   }
 
   getTimeSlotById(timeSlotId: number): Observable<TimeSlot> {
@@ -20,7 +24,10 @@ export class TimeSlotService {
   }
 
   reserveTimeSlot(timeSlotId: number): Observable<TimeSlot> {
-    return this.http.post<TimeSlot>(`${this.url}/${timeSlotId}/reservation`, null);
+    return this.http.post<TimeSlot>(
+      `${this.url}/${timeSlotId}/reservation`,
+      null
+    );
   }
 
   freeTimeSlot(timeSlotId: number) {
