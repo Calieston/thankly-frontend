@@ -1,0 +1,10 @@
+<div class="container div-space">
+  <h2 *ngIf="timeSlot">Reservation for Time Slot: {{ timeSlot.time }}</h2>
+
+  <app-button
+    id="reserve-time-slot"
+    btnClass="btn btn-primary btn-space"
+    btnLabel="Reserve"
+    (click)="reserveTimeSlot()"
+  ></app-button>
+</div>

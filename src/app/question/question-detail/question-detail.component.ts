@@ -9,16 +9,19 @@ import { AnswerService } from '../answer.service';
 @Component({
   selector: 'app-question-detail',
   templateUrl: './question-detail.component.html',
-  styleUrls: ['./question-detail.component.css']
+  styleUrls: ['./question-detail.component.css'],
 })
 export class QuestionDetailComponent implements OnInit {
-
   questionId = null;
   question: Question;
   answerText: string;
   faTimes = faTimes;
 
-  constructor(private route: ActivatedRoute, private questionService: QuestionService, private answerService: AnswerService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private questionService: QuestionService,
+    private answerService: AnswerService
+  ) {}
 
   ngOnInit(): void {
     this.questionId = this.route.snapshot.params['id'];
@@ -26,19 +29,20 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   updateQuestion(question: Question): void {
-    this.questionService.updateQuestion(question).subscribe(data => {
-    })
+    this.questionService.updateQuestion(question).subscribe((data) => {});
   }
 
   answerQuestion(questionId: number): void {
     let answer = {
-      answer: this.answerText
+      answer: this.answerText,
     };
     answer.answer = this.answerText;
-    this.questionService.answerQuestion(answer, questionId).subscribe(data => {
-      this.loadQuestion();
-    })
-    this.answerText='';
+    this.questionService
+      .answerQuestion(answer, questionId)
+      .subscribe((data) => {
+        this.loadQuestion();
+      });
+    this.answerText = '';
   }
 
   deleteAnswer(answerId: number) {
@@ -48,9 +52,8 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   loadQuestion() {
-    this.questionService.getQuestionById(this.questionId).subscribe(data => {
+    this.questionService.getQuestionById(this.questionId).subscribe((data) => {
       this.question = data;
     });
   }
-
 }

@@ -13,6 +13,8 @@ import { QuestionListComponent } from './question/question-list/question-list.co
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
 import { ButtonComponent } from './shared/button/button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TimeslotListComponent } from './timeslots/timeslot-list/timeslot-list.component';
+import { TimeslotReserveComponent } from './timeslots/timeslot-reserve/timeslot-reserve.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     FooterComponent,
     ButtonComponent,
+    TimeslotListComponent,
+    TimeslotReserveComponent,
   ],
   imports: [
     BrowserModule,
