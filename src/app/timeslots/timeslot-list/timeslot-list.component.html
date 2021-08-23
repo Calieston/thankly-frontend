@@ -1,4 +1,5 @@
 <div class="container div-space">
+  <!-- Date Picker-->
   <input
     matInput
     #resultPickerModel="ngModel"
@@ -10,6 +11,27 @@
   />
   <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
   <mat-datepicker #basicDatepicker [startAt]="startDate"></mat-datepicker>
+
+  <!-- Init Samples-->
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="initSampleData(selectedDate)"
+  >
+    Init Samples for {{ selectedDate | date: "dd.mm.yyyy" }}
+  </button>
+
+    <!-- Delete Samples-->
+  <button
+    mat-raised-button
+    color="warn"
+    type="button"
+    (click)="removeTimeSlots(selectedDate)"
+  >
+    Remove Timeslots
+  </button>
+
 
   <div *ngIf="timeSlots.length == 0" class="alert alert-info" role="alert">
     No time slots available. Please choose another day!

@@ -33,4 +33,21 @@ export class TimeSlotService {
   freeTimeSlot(timeSlotId: number) {
     return this.http.patch<TimeSlot>(`${this.url}/${timeSlotId}`, null);
   }
+
+  initSamples(selectedDate: string) {
+    let params = new HttpParams();
+    params = params.append('date', selectedDate);
+
+    return this.http.get<TimeSlot>(`${this.url}/init-samples`, {
+      params: params,
+    });
+  }
+  removeTimeSlots(selectedDate: string) {
+    let params = new HttpParams();
+    params = params.append('date', selectedDate);
+
+    return this.http.delete<TimeSlot>(`${this.url}/init-samples`, {
+      params: params,
+    });
+  }
 }

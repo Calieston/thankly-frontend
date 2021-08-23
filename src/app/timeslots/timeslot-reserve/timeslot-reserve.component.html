@@ -1,10 +1,149 @@
 <div class="container div-space">
   <h2 *ngIf="timeSlot">Reservation for Time Slot: {{ timeSlot.time }}</h2>
 
-  <app-button
+  <!-- <pre>serviceFormGroup values: {{ serviceFormGroup?.value | json }}</pre> -->
+  <!-- <pre>timeSlotFormGroup values: {{ timeSlotFormGroup?.value | json }}</pre> -->
+  <!-- <pre>serviceFormGroup values: {{ serviceFormGroup?.value | json }}</pre> -->
+
+  <mat-horizontal-stepper #stepper>
+    <!-- Step: Service -->
+    <mat-step
+      [stepControl]="serviceFormGroup"
+      errorMessage="Service selection is required."
+    >
+      <form [formGroup]="serviceFormGroup">
+        <ng-template matStepLabel>Service</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Service</mat-label>
+          <mat-select formControlName="serviceCtrl">
+            <mat-option *ngFor="let service of services" [value]="service">
+              {{ service }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- Step: Time -->
+    <mat-step
+      [stepControl]="timeSlotFormGroup"
+      errorMessage="Timeslot selection is required."
+    >
+      <form [formGroup]="timeSlotFormGroup">
+        <ng-template matStepLabel>Timeslot</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Timeslot</mat-label>
+          <mat-select formControlName="timeSlotCtrl">
+            <mat-option *ngFor="let timeSlot of timeSlots" [value]="timeSlot">
+              {{ timeSlot }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- Step: CustomerDetails -->
+    <mat-step
+      [stepControl]="customerDetailsFormGroup"
+      errorMessage="Name is required."
+    >
+      <form [formGroup]="customerDetailsFormGroup">
+        <ng-template matStepLabel>Details</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            placeholder="Last name, First name"
+            formControlName="fullNameCtrl"
+            required
+          />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>Phonenumber</mat-label>
+          <input
+            matInput
+            placeholder="+49176123456"
+            formControlName="phoneNumberCtrl"
+            required
+          />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>Mail</mat-label>
+          <input
+            matInput
+            placeholder="max.mustermann@gmx.net"
+            formControlName="mailCtrl"
+            required
+          />
+        </mat-form-field>
+
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- Step: CustomerDetails -->
+    <mat-step
+      [stepControl]="paymentFormGroup"
+      errorMessage="Payment selection is required."
+    >
+      <form [formGroup]="paymentFormGroup">
+        <ng-template matStepLabel>Payment</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Payment</mat-label>
+            <mat-select formControlName="paymentCtrl">
+              <mat-option *ngFor="let paymentOption of paymentOptions" [value]="paymentOption">
+                {{ paymentOption }}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-radio-group aria-label="Select a payment option" formControlName="paymentCtrl">
+              <mat-radio-button
+                *ngFor="let paymentOption of paymentOptions"
+                [value]="paymentOption"
+                >{{ paymentOption }}
+              </mat-radio-button>
+            </mat-radio-group> -->
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    -->
+    <!-- Final Step -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <!-- <h2>Overview</h2> -->
+      <!-- Street: {{ customerDetailsFormGroup.value.streetCtrl }} -->
+      <div>
+        <button mat-raised-button color="primary" (click)="reserveTimeSlot()">
+          Reserve
+        </button>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <!-- <app-button
     id="reserve-time-slot"
     btnClass="btn btn-primary btn-space"
     btnLabel="Reserve"
     (click)="reserveTimeSlot()"
-  ></app-button>
+  ></app-button> -->
 </div>

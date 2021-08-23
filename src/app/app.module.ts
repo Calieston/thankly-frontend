@@ -1,12 +1,22 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  MatMomentDateModule, MAT_MOMENT_DATE_FORMATS
+  MatMomentDateModule,
+  MAT_MOMENT_DATE_FORMATS,
 } from '@angular/material-moment-adapter';
+
+// ng material components
+import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,7 +31,7 @@ import { QuestionListComponent } from './question/question-list/question-list.co
 import { ButtonComponent } from './shared/button/button.component';
 import { TimeslotListComponent } from './timeslots/timeslot-list/timeslot-list.component';
 import { TimeslotReserveComponent } from './timeslots/timeslot-reserve/timeslot-reserve.component';
-
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [
@@ -48,9 +58,19 @@ import { TimeslotReserveComponent } from './timeslots/timeslot-reserve/timeslot-
     MatDatepickerModule,
     MatNativeDateModule,
     MatMomentDateModule,
+    MatButtonModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
   ],
   bootstrap: [AppComponent],
 })

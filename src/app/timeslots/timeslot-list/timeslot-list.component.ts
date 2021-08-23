@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { TimeSlot } from '../timeslot.model';
 import { TimeSlotService } from '../timeslot.service';
+import Utils from './../../shared/util';
 
 @Component({
   selector: 'app-timeslot-list',
@@ -31,15 +32,31 @@ export class TimeslotListComponent implements OnInit {
 
   freeTimeSlot(timeSlotId: number): void {
     this.timeSlotService.freeTimeSlot(timeSlotId).subscribe((data) => {
-      console.log('done');
-      this.getTimeSlots();
+      this.loadTimeSlots(this.selectedDate);
     });
   }
 
   loadTimeSlots(selectedDate: Date): void {
-    let selectedDayParsed = moment(selectedDate).format('YYYY-MM-DD');
-    this.timeSlotService.getTimeSlots(selectedDayParsed).subscribe((data) => {
-      this.timeSlots = data;
-    });
+    this.timeSlotService
+      .getTimeSlots(Utils.formatDate(selectedDate))
+      .subscribe((data) => {
+        this.timeSlots = data;
+      });
+  }
+
+  initSampleData(selectedDate: Date): void {
+    this.timeSlotService
+      .initSamples(Utils.formatDate(selectedDate))
+      .subscribe(() => {
+        this.loadTimeSlots(this.selectedDate);
+      });
+  }
+
+  removeTimeSlots(selectedDate: Date): void {
+    this.timeSlotService
+      .removeTimeSlots(Utils.formatDate(selectedDate))
+      .subscribe(() => {
+        this.loadTimeSlots(this.selectedDate);
+      });
   }
 }
